@@ -1,7 +1,7 @@
 import { create } from "zustand";
 
 export const globalVariables = create((set)=>({
-    openSidebar : false,
+    openSidebar : true,
     setOpenSidebar : ()=>set((state)=>({
         openSidebar:!state.openSidebar
     }))

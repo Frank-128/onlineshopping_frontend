@@ -1,6 +1,6 @@
 "use client"
+import { Badge } from '@/components/ui/badge'
 import { orders } from '@/constants'
-import { Chip } from '@material-tailwind/react'
 import React from 'react'
 
 function Orders() {
@@ -53,10 +53,8 @@ class="relative flex flex-col w-full h-[450px] overflow-scroll text-gray-700 bg-
       </td>
       <td class="p-4">
         
-        <Chip
-                          size="sm"
-                          variant="ghost"
-                          value={i.status}
+        <Badge
+                      
                           color={
                             i.status === "Delivered"
                               ? "green"
@@ -66,7 +64,9 @@ class="relative flex flex-col w-full h-[450px] overflow-scroll text-gray-700 bg-
                               ? "amber"
                               : "red"
                           }
-                        />
+                        >
+                          {i.status}
+                          </Badge>
       </td>
       <td class="p-4">
         <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">

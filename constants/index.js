@@ -34,6 +34,29 @@ export const admin_nav_links = [
 ]
 
 
+export const customer_links = [
+  {
+    name:"dashboard",
+    link : "/",
+    icon:()=><TfiDashboard size={30}/>
+},
+{
+    name:"products",
+    link : "/products",
+    icon:()=><AiOutlineProduct size={30} />
+},
+{
+    name:"My orders",
+    link : "/orders",
+    icon:()=><FaRegListAlt size={30}/>
+},
+{
+    name:"My payments",
+    link : "/payments",
+     icon:()=><MdPayment size={30}/>
+},
+]
+
 
 export const products = [
     {

@@ -16,7 +16,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={"h-screen w-screen flex  bg-gray-100 "}>
+      <body className={"h-screen w-screen flex font-sans bg-gray-100 "}>
 
         {/* sidebar and navbar */}
         <Navbar />
@@ -25,7 +25,7 @@ export default function RootLayout({ children }) {
        <Sidebar/>
         <section className="md:ml-[240px]  ml-0 p-2 text-gray-500   rounded h-fit md:h-[calc(100vh-90px)]  w-screen md:w-[calc(100vw-250px)]">{children}</section>
         </main>
-        <DrawerWithNavigation/>
+        
         
       </body>
     </html>

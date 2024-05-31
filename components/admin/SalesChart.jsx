@@ -1,16 +1,9 @@
 "use client"
-import {
-    Card,
-    CardBody,
-    CardHeader,
-    Typography,
-  } from "@material-tailwind/react";
+
   import Chart from "react-apexcharts";
+import { Card, CardContent } from "../ui/card";
    
-  // If you're using Next.js please use the dynamic import for react-apexcharts and remove the import from the top for the react-apexcharts
-  // import dynamic from "next/dynamic";
-  // const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-   
+  
   const chartConfig = {
     type: "bar",
     height: 340,
@@ -106,9 +99,9 @@ import {
     return (
       <Card className="z-0 h-[360px] w-11/12 md:w-full">
        
-        <CardBody className="px-2 pb-0">
+        <CardContent className="px-2 pb-0">
     <Chart {...chartConfig} />
-        </CardBody>
+        </CardContent>
       </Card>
     );
   }

@@ -1,12 +1,8 @@
 "use client"
-import {
-    Card,
-    CardHeader,
-    Typography,
-    CardBody,
-    Chip,
-    
-  } from "@material-tailwind/react";
+
+import { Badge } from "../ui/badge";
+import { Card, CardContent, CardHeader } from "../ui/card";
+
    
   const TABLE_HEAD = ["Product ID", "Name", "Email", "Amount", "Date","Status"];
    
@@ -103,13 +99,12 @@ import {
 
 export default function ProductTransaction() {
     return (
-      <Card className="z-0 md:w-2/3 w-11/12 h-[350px]   rounded">
-       <CardHeader floated={false} shadow={false} className="rounded-none">
-        <div className="h-16">
-        Latest orders
-        </div>
-       </CardHeader>
-        <CardBody className="overflow-scroll hideScroll px-0 ">
+      <Card className="z-0 md:w-2/3 w-11/12  rounded">
+       
+        <CardContent className="overflow-scroll  h-[350px]  hideScroll px-0 ">
+         <div className="text-gray-600 p-2">
+          Latest orders
+         </div>
           <table className="w-full min-w-max table-auto text-left">
             <thead>
               <tr>
@@ -118,13 +113,12 @@ export default function ProductTransaction() {
                     key={head}
                     className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
                   >
-                    <Typography
-                      variant="small"
-                      color="blue-gray"
-                      className="font-normal leading-none opacity-70"
+                    <span
+                     
+                      className="font-normal leading-none opacity-70 text-xs"
                     >
                       {head}
-                    </Typography>
+                    </span>
                   </th>
                 ))}
               </tr>
@@ -152,53 +146,44 @@ export default function ProductTransaction() {
                     <tr key={index}>
                       <td className={classes}>
                        
-                          <Typography
-                            variant="small"
-                            color="blue-gray"
-                            className="font-bold"
+                          <span
+                            className="font-bold text-gray-500 text-xs"
                           >
                             {product_id}
-                          </Typography>
+                          </span>
                        
                       </td>
                       <td className={classes}>
                        
-                       <Typography
-                         variant="small"
-                         color="blue-gray"
-                         className="font-bold"
+                       <span
+                         className="font-bold text-xs text-gray-500"
                        >
                          {name}
-                       </Typography>
+                       </span>
                     
                    </td>
                    <td className={classes}>
                        
-                       <Typography
-                         variant="small"
-                         color="blue-gray"
-                         className="font-bold"
+                       <span
+                         className="font-bold text-xs text-gray-500"
                        >
                          {email}
-                       </Typography>
+                       </span>
                     
                    </td>
                       <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
+                        <span
+                          
+                          className="font-normal text-xs text-gray-500"
                         >
                           {amount}
-                        </Typography>
+                        </span>
                       </td>
                      
                       <td className={classes}>
                         <div className="w-max">
-                          <Chip
-                            size="sm"
-                            variant="ghost"
-                            value={status}
+                          <Badge
+                            
                             color={
                               status === "paid"
                                 ? "green"
@@ -206,17 +191,17 @@ export default function ProductTransaction() {
                                 ? "amber"
                                 : "red"
                             }
-                          />
+                          >
+                            {status}
+                            </Badge>
                         </div>
                       </td>
                       <td className={classes}>
-                        <Typography
-                          variant="small"
-                          color="blue-gray"
-                          className="font-normal"
+                        <span
+                          className="font-normal text-xs text-gray-500"
                         >
                           {date}
-                        </Typography>
+                        </span>
                       </td>
                      
                     </tr>
@@ -225,7 +210,7 @@ export default function ProductTransaction() {
               )}
             </tbody>
           </table>
-        </CardBody>
+        </CardContent>
         
       </Card>
     );
