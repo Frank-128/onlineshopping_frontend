@@ -1,5 +1,6 @@
 import AddToCartCard from '@/components/customer/AddToCartCard'
 import { products } from '@/constants/products'
+import Image from 'next/image'
 
 import React from 'react'
 
@@ -12,7 +13,7 @@ function Product({params}) {
   return (
     <div className='flex p-20 gap-4 justify-around md:flex-row flex-col'>
         <div>
-            <img src={product.image} className='w-72 h-72' />
+            <Image width={500} height={500} alt={product.image} src={product.image} className='w-72 h-72' />
         </div>
         <div className='flex flex-col gap-y-2'>
             <b>{product.title}</b>

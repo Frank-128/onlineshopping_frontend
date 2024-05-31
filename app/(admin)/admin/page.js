@@ -1,8 +1,9 @@
+"use client"
 import DashboardCard from "@/components/admin/DashboardCard";
 import ProductTransaction from "@/components/admin/ProductTransaction";
 import SalesChart from "@/components/admin/SalesChart";
 
-export default function Home() {
+export default function Admin() {
   return (
     <main className="space-y-4">
       <div className="flex py-2 px-4 flex-1 gap-2 justify-between hideScroll overflow-x-scroll">

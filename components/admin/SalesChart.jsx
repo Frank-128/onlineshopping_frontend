@@ -1,9 +1,12 @@
 "use client"
-
-  import Chart from "react-apexcharts";
+import dynamic from "next/dynamic";
+const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
 import { Card, CardContent } from "../ui/card";
    
-  
+
+   
+
+
   const chartConfig = {
     type: "bar",
     height: 340,
@@ -105,3 +108,4 @@ import { Card, CardContent } from "../ui/card";
       </Card>
     );
   }
+

@@ -15,7 +15,7 @@ function Products() {
        <Button variant="outline" >
        <Link
           href={"/admin/products/add_product"}
-          className="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-xs"
+          className="inline-flex items-center justify-center whitespace-nowrap rounded-md  font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 text-xs"
         >
           Add new product
         </Link>
@@ -64,7 +64,7 @@ function Products() {
                       <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                         {i.name}
                       </p>
-                      <img src={i.img} className="object-cover h-10 w-10" />
+                      <Image src={i.img} width={500} height={500} alt={i.img} className="object-cover h-10 w-10" />
                     </div>
                   </td>
                   <td class="p-4">
