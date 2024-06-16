@@ -11,7 +11,7 @@ import { CheckCircle } from 'lucide-react';
 function Success() {
     const [countDown,setCountDown] = useState({hours:5,minutes:40,seconds:60});
 
-    const [width, setWidth] = useState(window.innerWidth > 700 ? 500 : 200);
+    const [width, setWidth] = useState(200);
 
   useEffect(() => {
     const handleResize = () => {
