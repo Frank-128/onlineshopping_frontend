@@ -23,7 +23,7 @@ export default function CustomerNavbar() {
     const pathname = usePathname()
   return (
     <Sheet>
-      <SheetTrigger asChild>
+      <SheetTrigger asChild className="md:hidden">
           <Menu/>
       </SheetTrigger>
       <SheetContent side="left" className='font-sans bg-[#062451]'>

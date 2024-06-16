@@ -36,25 +36,20 @@ export const admin_nav_links = [
 
 export const customer_links = [
   {
-    name:"dashboard",
+    name:"Dashboard",
     link : "/",
     icon:()=><TfiDashboard size={30}/>
 },
 {
-    name:"products",
+    name:"Products",
     link : "/products",
     icon:()=><AiOutlineProduct size={30} />
 },
 {
-    name:"My orders",
-    link : "/orders",
+    name:"Categories",
+    link : "/categories",
     icon:()=><FaRegListAlt size={30}/>
-},
-{
-    name:"My payments",
-    link : "/payments",
-     icon:()=><MdPayment size={30}/>
-},
+}
 ]
 
 
@@ -290,4 +285,29 @@ export const products = [
     }
   ]
   
-  
+export const payment_types = [
+  {
+    name:"Airtel Money",
+    img:"/payments/airtel.jpg",
+  },
+  {
+    name:"Halopesa",
+    img:"/payments/halopesa.png"
+  },
+  {
+    name:"Mastercard",
+    img:"/payments/mastercard.png",
+  },
+  {
+    name:"MPesa",
+    img:"/payments/mpesa.jpeg",
+  },
+  {
+    name:"Tigo Pesa",
+    img:"/payments/tigo.png",
+  },
+  {
+    name:"Visa",
+    img:"/payments/visa.jpeg",
+  },
+]

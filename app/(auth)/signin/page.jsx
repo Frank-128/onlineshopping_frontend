@@ -2,6 +2,7 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import axios from "axios";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
@@ -15,16 +16,21 @@ function SignIn() {
 
   const submitData = ({email,password})=>{
 
-    
-    if(email == "admin@gmail.com" && password == "12345"){
-      
+    axios.post('http://localhost:8080/api/v1/base/authenticate').then((res)=>{
       router.push('/admin')
-     return
-    }
-    else if (email == "kefline@gmail.com" && password == "54321"){
-      router.push("/")
-      return
-    }
+    }).catch((err)=>{
+      alert("Opps login failed")
+      console.log(err)
+    })
+    // if(email == "admin@gmail.com" && password == "12345"){
+      
+    //   router.push('/admin')
+    //  return
+    // }
+    // else if (email == "kefline@gmail.com" && password == "54321"){
+    //   router.push("/")
+    //   return
+    // }
 
     setError("Email or password is incorrect");
   }

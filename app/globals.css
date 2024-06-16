@@ -74,3 +74,23 @@
       @apply bg-background text-foreground;
     }
   }
+
+
+.motorcycle {
+    position: absolute;
+    bottom: 20px;
+    left: -100px; /* Start off-screen */
+    width: 100px;
+}
+  
+.fire {
+    position: absolute;
+    bottom: 10px;
+    left: -30px;
+    width: 30px;
+    height: 30px;
+    background: radial-gradient(circle, red, orange, yellow);
+    border-radius: 50%;
+    opacity: 0; /* Start hidden */
+}
+  

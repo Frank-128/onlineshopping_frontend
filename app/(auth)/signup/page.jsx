@@ -15,7 +15,7 @@ function SignUp() {
           Sign Up
         </h2>
         <h2 className="text-center text-gray-600">already have an account? <Link href="/signin" className="text-blue-900 italic hover:opacity-30 animate duration-75">signin</Link></h2>
-        <Input label="name" className="p-2" size="lg" />
+       
         
         <div className="grid w-full max-w-sm items-center gap-1.5">
         <Label htmlFor="name">Name</Label>
