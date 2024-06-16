@@ -60,7 +60,7 @@ function CustomerNavbar() {
         <span className={`${cartLength < 1 && 'hidden'} absolute w-4 h-4 rounded-full -top-2 text-center text-xs -right-2 text-white bg-red-800`}>{cartLength}</span>
         </Link>
     <div className='md:flex hidden  md:flex-row md:w-fit  justify-between  px-8 md:px-0 flex-row-reverse gap-x-4 items-end'>
-       <div className=' items-center justify-center gap-x-5'>
+       <div className='flex items-center justify-center gap-x-5'>
         <Link href='/cart' className='relative'>
         <FaCartShopping id="cartIcon" size={20} />
         <span className={`${cartLength < 1 && 'hidden'} absolute w-4 h-4 rounded-full -top-2 text-center text-xs -right-2 text-white bg-red-800`}>{cartLength}</span>
