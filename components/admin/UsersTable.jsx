@@ -11,6 +11,9 @@ import {
 } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
+import { useEffect } from "react";
+import axios from "axios";
+import { StoredCookie } from "@/constants/functions";
 
 const TABS = [
   {
@@ -79,7 +82,29 @@ const TABLE_ROWS = [
   },
 ];
 
+
+
 export default function UsersTable() {
+
+  const {getToken} = StoredCookie()
+
+  
+
+  useEffect(()=>{
+    const token = getToken();
+    axios
+        .post("https://shopping-whv7.onrender.com/admin/all-users",{
+          headers:{
+            Authorization:`Bearer ${token}`
+          }
+        }
+         ).then((res)=>{
+          console.log(res.data)
+         }).catch((err)=>{
+          console.log(err)
+         })
+      
+  },[])
   return (
     <Card className="rounded-none z-0 h-fit md:h-[calc(100vh-120px)] overflow-y-scroll hideScroll w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none">
@@ -90,8 +115,8 @@ export default function UsersTable() {
             </span>
             <Tabs defaultValue="account" className="w-[400px]">
       <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="account">Account</TabsTrigger>
-        <TabsTrigger value="password">Password</TabsTrigger>
+        <TabsTrigger value="customer">Customers</TabsTrigger>
+        <TabsTrigger value="entrepreneur">Entrepreneurs</TabsTrigger>
       </TabsList>
 
       </Tabs>

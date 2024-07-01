@@ -9,6 +9,7 @@ import { Card, CardContent } from "../ui/card";
 
   const chartConfig = {
     type: "bar",
+    width:"100%",
     height: 340,
     series: [
       {

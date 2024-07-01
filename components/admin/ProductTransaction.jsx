@@ -1,6 +1,6 @@
 "use client"
 
-import { Badge } from "../ui/badge";
+import Badge from "../Badge";
 import { Card, CardContent, CardHeader } from "../ui/card";
 
    
@@ -99,7 +99,7 @@ import { Card, CardContent, CardHeader } from "../ui/card";
 
 export default function ProductTransaction() {
     return (
-      <Card className="z-0 md:w-2/3 w-11/12  rounded">
+      <Card className="z-0 lg:w-2/3 w-11/12  rounded">
        
         <CardContent className="overflow-scroll  h-[350px]  hideScroll px-0 ">
          <div className="text-gray-600 p-2">
@@ -184,12 +184,12 @@ export default function ProductTransaction() {
                         <div className="w-max">
                           <Badge
                             
-                            color={
+                            variant={
                               status === "paid"
-                                ? "green"
+                                ? "success"
                                 : status === "pending"
-                                ? "amber"
-                                : "red"
+                                ? "warning"
+                                : "error"
                             }
                           >
                             {status}

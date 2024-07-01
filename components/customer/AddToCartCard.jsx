@@ -18,7 +18,9 @@ function AddToCartCard({ selectedColors, selectedSizes, item }) {
   const addToCart = useCart((state) => state.addToCart);
 
   const handleSubmit = (type) => {
+    console.log("type",type)
     if (selectedColors.length === 0 && selectedSizes.length !== 0) {
+      console.log("reached here color select")
       return toast({
         title: "Oops",
         variant: "destructive",
@@ -104,7 +106,7 @@ function AddToCartCard({ selectedColors, selectedSizes, item }) {
     <Card className="place-items-center">
       <CardContent className="place-items-center">
         <p>Buy Now</p>
-        <b className="text-4xl text-gray-800">{item.price}</b>
+        <b className="text-4xl text-gray-800">{item?.actualPrice}</b>
         <div className="flex flex-col gap-4">
           <span className="">
             <h2 className="text-blue-900">Free delivery on Sunday</h2>

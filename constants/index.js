@@ -33,6 +33,7 @@ export const admin_nav_links = [
 
 ]
 
+export const decrypt_key = "yILd4iHh3ngQWnnEnDhXNQmpOpreM5R0KxNKlHAX5BmNR/elp4ybJfKc6GTgwlPu"
 
 export const customer_links = [
   {

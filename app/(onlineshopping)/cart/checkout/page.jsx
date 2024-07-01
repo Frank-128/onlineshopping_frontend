@@ -17,10 +17,15 @@ import { useCart } from "@/context/cart";
 import { Card, CardFooter } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { StoredCookie } from "@/constants/functions";
+import axios from "axios";
 
 function Checkout() {
   const cart = useCart((state) => state.items);
   const [chosenValue,setChosenValue] = useState("");
+  const {register,handleSubmit,formState:{errors}} = useForm()
+  const {getToken} = StoredCookie()
   const router = useRouter();
 
 
@@ -51,7 +56,7 @@ function Checkout() {
     let total = 0;
 
     cart.forEach((cartElement) => {
-      total += cartElement.quantity * cartElement.item.price;
+      total += cartElement.quantity * cartElement.item.actualPrice;
     });
 
     return total;
@@ -60,54 +65,69 @@ function Checkout() {
   const quantity = totalQuantity();
   const amount = calculateTotalAmount().toFixed(2);
 
+
+  const submitData = (data)=>{
+    
+
+    
+    const cartItems = [];
+    cart.forEach(element => {
+      console.log(element)
+      cartItems.push({itemNo:element.item.itemNo,productQuantity:element.item.quantity,sizes:element.selectedSizes,colors:element.selectedColors})
+    });
+    
+    const token = getToken();
+    if (token) {
+      axios
+        .post("https://shopping-whv7.onrender.com/api/v1/user/cart/checkout",{...data,cartItems}, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data)
+         handlePayment()
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }
+  
+
   return (
-    <div className="px-10 flex md:flex-row gap-y-2 flex-col py-4">
+    <form onSubmit={handleSubmit(submitData)} className="px-10 flex md:flex-row gap-y-2 flex-col py-4">
       <div className="flex items-center flex-col md:basis-4/6">
         <div className="text-2xl  text-gray-500 text-center">
           Shipping address
         </div>
-        <form className="border-gray-200 border-[0.6px] min-md:w-full px-2 flex flex-col md:px-10 py-5 shadow-sm md:items-center gap-y-4 md:justify-between ">
+        <div className="border-gray-200 border-[0.6px] min-md:w-full px-2 flex flex-col md:px-10 py-5 shadow-sm md:items-center gap-y-4 md:justify-between ">
           <div className="flex gap-x-5 flex-col md:flex-row justify-between w-full">
             <div>
               <Label htmlFor="email">Email</Label>
-              <Input name="email" />
+              <Input name="email" {...register('email',{required:'email field is required'})} />
+              {errors.email && <span className='text-red-600'>{errors.email.message}</span>}
             </div>
+           
+          </div>
+          
+          <div className="flex gap-x-5 flex-col md:flex-row justify-between w-full">
+           
             <div>
-              <Label htmlFor="email">Phone number</Label>
-              <Input name="email" />
+              <Label htmlFor="region">Region</Label>
+              <Input name="region" {...register('region',{required:'region field is required'})} />
+              {errors.region && <span className='text-red-600'>{errors.region.message}</span>}
             </div>
           </div>
           <div className="flex gap-x-5 flex-col md:flex-row justify-between w-full">
             <div>
-              <Label htmlFor="email">First Name</Label>
-              <Input name="email" />
+              <Label htmlFor="street">Street</Label>
+              <Input name="street"{...register('street',{required:'street field is required'})} />
+              {errors.street && <span className='text-red-600'>{errors.street.message}</span>}
             </div>
-            <div>
-              <Label htmlFor="email">Last Name</Label>
-              <Input name="email" />
-            </div>
+        
           </div>
-          <div className="flex gap-x-5 flex-col md:flex-row justify-between w-full">
-            <div>
-              <Label htmlFor="email">Country</Label>
-              <Input name="email" />
-            </div>
-            <div>
-              <Label htmlFor="email">Province</Label>
-              <Input name="email" />
-            </div>
-          </div>
-          <div className="flex gap-x-5 flex-col md:flex-row justify-between w-full">
-            <div>
-              <Label htmlFor="email">Street</Label>
-              <Input name="email" />
-            </div>
-            <div>
-              <Label htmlFor="email">House Number</Label>
-              <Input name="email" />
-            </div>
-          </div>
-        </form>
+        </div>
         <div className="text-2xl  text-gray-500 text-center">
           Payment method
         </div>
@@ -142,8 +162,8 @@ function Checkout() {
         {cart.map(({ item, quantity }, index) => {
           return (
             <div key={index} className="flex justify-between w-full">
-              <span className="font-semibold text-gray-700">{item.title}</span>
-              <span>{item.price * quantity}</span>
+              <span className="font-semibold text-gray-700">{item.itemName}</span>
+              <span>{item.actualPrice * quantity}</span>
             </div>
           );
         })}
@@ -154,12 +174,12 @@ function Checkout() {
           </div>
           <div className="flex justify-between gap-x-10 items-center">
           <h1 className="font-bold text-md">Total Number of items</h1>
-          <h1 className="text-2xl font-bold text-gray-400">{quantity}/=</h1>
+          <h1 className="text-2xl font-bold text-gray-400">{quantity}</h1>
           </div>
-          <Button onClick={handlePayment} className="bg-blue-900">Make Payment</Button>
+          <Button  type="submit" className="bg-blue-900">Make Payment</Button>
           </CardFooter>
       </Card>
-    </div>
+    </form>
   );
 }
 

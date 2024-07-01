@@ -5,8 +5,8 @@ import { FaDownload, FaSearch } from "react-icons/fa";
 import { Card, CardContent, CardHeader } from "../ui/card";
 import { Input } from "../ui/input";
 import { Button } from "../ui/button";
-import { Badge } from "../ui/badge";
 import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+import Badge from "../Badge";
  
 const TABLE_HEAD = ["Order ID", "Amount", "Date", "Status", "Payment method"];
  
@@ -149,13 +149,13 @@ export function TransactionsTable() {
                         <Badge
                           
                           
-                          value={i.status}
-                          className={
+                          
+                          variant={
                             i.status === "Completed"
-                              ? "bg-green-300 text-green-700"
+                              ? "success"
                               : i.status === "Pending"
-                              ? "bg-amber-300 text-amber-800"
-                              : "bg-red-300 text-red-900"
+                              ? "warning"
+                              : "error"
                           }
                         >
                           {i.status}

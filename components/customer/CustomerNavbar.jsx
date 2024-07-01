@@ -13,14 +13,15 @@ import Image from 'next/image'
 import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar'
 import ProfilePopover from './ProfilePopover'
 import { useCart } from '@/context/cart'
+import { useAuth } from '@/context/auth'
 
 
 function CustomerNavbar() {
   const pathname = usePathname()
-  const auth = true;
+  const auth = useAuth(state=>state.user)
   const cartLength = useCart(state=>state.items).length
   
-
+  console.log(auth)
 
   return (
     <nav className="h-24 md:h-20 w-screen  bg-[#062451] z-50 fixed inset-0 md:flex-row flex flex-col   text-white justify-around md:px-5 items-center">
@@ -44,8 +45,8 @@ function CustomerNavbar() {
       }
   </div>
    
-   <div className='flex  md:flex-row md:gap-x-5 items-center justify-between '>
-   <div className='w-[300px] my-1  flex'>
+   <div className='flex w-full md:w-fit px-5 md:px-0 md:flex-row md:gap-x-5 items-center justify-between '>
+   <div className='w-[230px] md:w-[300px] my-1  flex'>
     
     <div className="grid w-full max-w-sm items-center rounded-l-md gap-1.5">
       
