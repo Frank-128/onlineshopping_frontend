@@ -100,7 +100,7 @@ gsap.fromTo(".box", {
   return (
     <div className="app basis-1/2 hidden bg-gray-200 md:flex flex-col items-center justify-center gap-2">
      
-      <div className="box  opacity-0 animation_headerfont-extrabold text-transparent text-3xl bg-clip-text  bg-gradient-to-r from-purple-400 to-pink-600">Online shopping</div>
+      <div className="box  opacity-0 animation_header font-extrabold text-transparent text-3xl bg-clip-text  bg-gradient-to-r from-purple-400 to-pink-600">Online shopping</div>
      <div className="welcome opacity-0 text-3xl text-[#aeb0b3]">Welcome,</div>
      <div className="slogan max-md:text-4xl text-xl text-gray-500 opacity-0">Shop with us at fair prices start now!!</div>
       <Image className="opacity-0 animation_picture" alt="shopping" src={'/shopping_cart.png'} width={400} height={400} />

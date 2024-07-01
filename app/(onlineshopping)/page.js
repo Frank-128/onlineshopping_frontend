@@ -15,7 +15,7 @@ export default function Home() {
   };
 
   return (
-    <main className="min-h-[calc(100vh-80px)] w-full flex md:flex-row flex-col bg-blue-800/20 px-2 md:px-10 py-5">
+    <main className="min-h-[calc(100vh-80px)] w-full flex lg:flex-row items-center flex-col xl:justify-between bg-blue-800/20 px-2 lg:px-10 py-5">
       <div>
         <p className="text-gray-100 text-md  md:text-2xl">
           All products in one place
@@ -24,7 +24,7 @@ export default function Home() {
           Get your favorite products at fair prices and faster
         </p>
 
-        <div className="max-md:hidden flex items-center justify-center w-full bg-[#062451] my-2 py-2 rounded-sm shadow-2xl">
+        <div className="max-lg:hidden flex items-center justify-center w-full bg-[#062451] my-2 py-2 rounded-sm shadow-2xl">
           <div className=" flex items-center flex-col">
             <p className="mt-14 text-white">Featured Products</p>
             <DashboardSlider />
@@ -41,9 +41,9 @@ export default function Home() {
         width={600}
         height={600}
         alt="logo"
-        className="w-[20rem] h-[20rem] md:w-[30rem] md:h-[30rem] object-cover"
+        className="w-[20rem] h-[20rem] sm:w-[15rem] sm:h-[15rem] md:w-[30rem] md:h-[30rem] lg:w-[40rem] lg:h-[40rem] object-cover"
       />
-       <div className="md:hidden flex items-center justify-center w-full bg-[#062451] my-2 py-2 rounded-sm shadow">
+       <div className="lg:hidden flex items-center justify-center w-full bg-[#062451] my-2 py-2 rounded-sm shadow">
           <div className=" flex items-center flex-col">
             <p className="mt-14 text-white">Featured Products</p>
             <DashboardSlider />

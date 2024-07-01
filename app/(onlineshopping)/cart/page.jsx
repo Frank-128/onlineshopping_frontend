@@ -38,7 +38,7 @@ function Cart() {
         let total = 0;
 
         cart.forEach(cartElement => {
-            total += (cartElement.quantity * cartElement.item.price);
+            total += (cartElement.quantity * cartElement.item.actualPrice);
         });
 
         return total
@@ -71,7 +71,7 @@ function Cart() {
                 <TableBody>
                  {cart.map(({item,selectedColors,selectedSizes,quantity},index)=> <TableRow key={index}>
                     <TableCell className="font-medium flex gap-x-2 flex-col md:flex-row ">
-                        <Image src={item.image} width={100} height={100} className='w-16 h-16 object-contain' alt='pid' />
+                        <Image src={"https://shopping-whv7.onrender.com/images/"+item.imageUrl} width={100} height={100} className='w-16 h-16 object-contain' alt='pid' />
                         <div className='flex flex-col gap-y-1'>
                             <h1 className='text-gray-700  text-sm max-sm:hidden'>{item.title}</h1>
                             <h2 className='text-gray-400 text-xs'>itemId: {item.id}</h2>
@@ -92,9 +92,9 @@ function Cart() {
                         </div>
                         </TableCell>
                     <TableCell>{selectedSizes.map((size,ind)=><span key={ind}>{size}, </span>)}</TableCell>
-                    <TableCell>{item.price}</TableCell>
+                    <TableCell>{item.actualPrice}</TableCell>
                     <TableCell>{quantity}</TableCell>
-                    <TableCell className="text-right">{item.price * quantity}</TableCell>
+                    <TableCell className="text-right">{item.actualPrice * quantity}</TableCell>
                   </TableRow>)}
                 </TableBody>
               </Table> 

@@ -1,7 +1,9 @@
 "use client";
 import AddToCartCard from "@/components/customer/AddToCartCard";
+import { StoredCookie } from "@/constants/functions";
 import { products } from "@/constants/products";
 import { useCart } from "@/context/cart";
+import axios from "axios";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
 
@@ -17,6 +19,8 @@ function Product({ params }) {
   );
   const colors = useRef(selectedColors);
   const sizes = useRef(selectedSizes);
+  const { getToken } = StoredCookie();
+  const [product, setProduct] = useState(null);
   
 
   useEffect(() => {
@@ -24,26 +28,50 @@ function Product({ params }) {
     sizes.current = selectedSizes;
   }, [selectedColors, selectedSizes]);
 
-  const product = products.find((p) => p.id == params.id);
+  // const product = products.find((p) => p.id == params.id);
+
+  
+
+  useEffect(() => {
+    const token = getToken();
+    if (token) {
+      axios
+        .get("https://shopping-whv7.onrender.com/api/v1/search/item-product?queryStr="+params.id, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          console.log(res.data)
+          setProduct(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
 
   return (
-    <div className="flex p-20 gap-4 justify-around md:flex-row flex-col">
+    <>
+    {
+      product == null ? "loading...":
+      <div className="flex p-20 gap-4 justify-around md:flex-row flex-col">
       <div>
         <Image
           width={500}
           height={500}
-          alt={product.image}
-          src={product.image}
-          className="w-72 h-72 object-contain"
+          alt={product?.imageUrl}
+          src={"https://shopping-whv7.onrender.com/images/"+product?.imageUrl}
+          className="w-72 h-72 object-cover"
         />
       </div>
       <div className="flex flex-col gap-y-2">
-        <b>{product.title}</b>
-        <span className="font-bold">{product.price}</span>
+        <b>{product?.itemName}</b>
+        <span className="font-bold">{product?.actualPrice}</span>
         <div>
           <span>Color</span>
           <div className="flex gap-x-2">
-            {product.colors.map((itm, index) => (
+            {product?.colors.map((itm, index) => (
               <span
                 onClick={() =>
                   setSelectedColors((prev) => {
@@ -68,7 +96,7 @@ function Product({ params }) {
         <div>
           <span>Size</span>
           <div className="flex gap-x-2">
-            {product.sizes.map((itm, index) => (
+            {product?.sizes.map((itm, index) => (
               <span
                 key={index}
                 onClick={() =>
@@ -98,6 +126,8 @@ function Product({ params }) {
         item={product}
       />
     </div>
+    }
+    </>
   );
 }
 
