@@ -6,25 +6,20 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 
 function Products() {
-  const { getToken } = StoredCookie();
+
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    const token = getToken();
-    if (token) {
+
       axios
-        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/items", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/items")
         .then((res) => {
           setProducts(res.data);
         })
         .catch((err) => {
           console.log(err);
         });
-    }
+
   }, []);
     
   return (

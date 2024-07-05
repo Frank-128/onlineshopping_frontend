@@ -11,21 +11,16 @@ function Category({ params }) {
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    const token = getToken();
-    if (token) {
+
       axios
-        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/items", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/items")
         .then((res) => {
           setProducts(res.data);
         })
         .catch((err) => {
           console.log(err);
         });
-    }
+
   }, []);
   const category_products = products?.filter((item) =>
     item?.category?.includes(params.category)

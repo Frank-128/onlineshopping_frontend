@@ -14,7 +14,7 @@ export const StoredCookie = () => {
     
     setCookie("token", token, {
       path: "/",
-      secure: true,
+      secure: false,
       sameSite: "Strict",
     });
   };

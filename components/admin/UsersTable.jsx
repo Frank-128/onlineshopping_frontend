@@ -93,7 +93,7 @@ export default function UsersTable() {
   useEffect(()=>{
     const token = getToken();
     axios
-        .post("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/admin/all-users",{
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/admin/all-users",{
           headers:{
             Authorization:`Bearer ${token}`
           }

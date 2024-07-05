@@ -1,11 +1,9 @@
 "use client";
 import AddToCartCard from "@/components/customer/AddToCartCard";
-import { StoredCookie } from "@/constants/functions";
-import { products } from "@/constants/products";
 import { useCart } from "@/context/cart";
 import axios from "axios";
 import Image from "next/image";
-import { useRouter } from "next/navigation";
+
 
 import React, { useEffect, useRef, useState } from "react";
 
@@ -19,7 +17,7 @@ function Product({ params }) {
   );
   const colors = useRef(selectedColors);
   const sizes = useRef(selectedSizes);
-  const { getToken } = StoredCookie();
+
   const [product, setProduct] = useState(null);
   
 
@@ -28,19 +26,14 @@ function Product({ params }) {
     sizes.current = selectedSizes;
   }, [selectedColors, selectedSizes]);
 
-  // const product = products.find((p) => p.id == params.id);
+
 
   
 
   useEffect(() => {
-    const token = getToken();
-    if (token) {
+
       axios
-        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/item-product?queryStr="+params.id, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/item-product?queryStr="+params.id)
         .then((res) => {
           console.log(res.data)
           setProduct(res.data);
@@ -48,7 +41,7 @@ function Product({ params }) {
         .catch((err) => {
           console.log(err);
         });
-    }
+
   }, []);
 
   return (

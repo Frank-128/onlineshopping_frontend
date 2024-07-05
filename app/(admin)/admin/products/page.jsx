@@ -54,7 +54,7 @@ function Products() {
               Add new product
             </Link>
           </Button>
-          <AddCategory />
+
         </div>
         <div class="relative mt-2 flex flex-col w-full h-[450px] overflow-scroll text-gray-700 bg-white shadow-md bg-clip-border rounded-none">
          { products && <table class="w-full text-left table-auto min-w-max">
@@ -126,7 +126,7 @@ function Products() {
                     <td class="p-4">
                       <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
                         {i?.category?.map((item, ind) => (
-                          <span key={ind}>{item}</span>
+                          <span key={ind}>{item},</span>
                         ))}
                       </p>
                     </td>

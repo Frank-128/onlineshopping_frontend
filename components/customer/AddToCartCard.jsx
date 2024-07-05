@@ -129,11 +129,11 @@ function AddToCartCard({ selectedColors, selectedSizes, item }) {
                 quantity > 0 && setQuantity(quantity - 1);
               }}
             >
-              <FaMinus className="shadow-lg px-2 w-fit" />
+              <FaMinus className="shadow-lg px-2 w-10 " />
             </button>
             <b>quantity : {quantity}</b>
             <button onClick={() => setQuantity(quantity + 1)}>
-              <FaPlus className="shadow-lg px-2 w-fit" />
+              <FaPlus className="shadow-lg px-2 w-10 " />
             </button>
           </span>
         </div>

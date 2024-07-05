@@ -27,9 +27,9 @@ function AddProduct() {
     handleSubmit,
     formState: { errors },
   } = useForm();
-  const [selectValues, setSelectValues] = useState({
-    category: null,
-    ratings: null,
+  const [ratings, setRatings] = useState({
+    ratingValue: null,
+    error: null,
   });
 
   const { getToken } = StoredCookie();
@@ -45,9 +45,13 @@ function AddProduct() {
   const categories = ["men", "women", "gadgets", "electronics", "furniture"];
 
   const submitData = (data) => {
-    console.log(data, selectValues);
+
+    if(ratings.ratings === null){
+      return setRatings({ratings: null,error:true})
+    }
+
     const { itemName, imageUrl } = data;
-    const { category, ratings } = selectValues;
+    const {  ratingValue } = ratings;
     const formData = new FormData();
 
     Object.entries(data).forEach(([key, value]) => {
@@ -58,9 +62,8 @@ function AddProduct() {
       }
     });
   
-    // Append additional values from selectValues
-    // formData.append("category", category);
-    formData.append("ratings", ratings);
+
+    formData.append("ratings", ratingValue);
     const token = getToken();
     axios
       .post("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/user/publish-product",formData, {
@@ -122,7 +125,7 @@ function AddProduct() {
           <div className="w-full">
             <Select
               onValueChange={(e) =>
-                setSelectValues((prev) => ({ ...prev, ratings: e }))
+                setRatings({ratingValue:e,error: false})
               }
             >
               <SelectTrigger>
@@ -139,7 +142,7 @@ function AddProduct() {
                 </SelectGroup>
               </SelectContent>
             </Select>
-            {!selectValues.ratings && <span className="text-red-600 text-xs">Ratings are required</span>}
+            {ratings.error && <span className="text-red-600 text-xs">Ratings are required</span>}
           </div>
           <div className="flex flex-col justify-start w-full">
             <Label htmlFor="#">Category</Label>
