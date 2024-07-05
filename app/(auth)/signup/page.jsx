@@ -31,7 +31,7 @@ function SignUp() {
     setLoading(true);
     clearErrors(); //fix this error clearing logic
     axios
-      .post("https://shopping-whv7.onrender.com/api/v1/base/signup", {
+      .post("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/base/signup", {
         ...data,
         role: "CUSTOMER",
       })

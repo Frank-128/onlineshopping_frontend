@@ -34,7 +34,7 @@ function Settings() {
     const token = getToken();
     if (token) {
       axios
-        .get(`https://shopping-whv7.onrender.com/api/v1/user/${auth?.userID}`, {
+        .get(`http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/user/${auth?.userID}`, {
           headers: {
             Authorization: `Bearer ${token}`,
           },

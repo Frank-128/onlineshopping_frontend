@@ -13,7 +13,7 @@ function Products() {
     const token = getToken();
     if (token) {
       axios
-        .get("https://shopping-whv7.onrender.com/api/v1/search/items", {
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/items", {
           headers: {
             Authorization: `Bearer ${token}`,
           },

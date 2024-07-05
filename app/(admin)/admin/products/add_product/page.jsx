@@ -63,7 +63,7 @@ function AddProduct() {
     formData.append("ratings", ratings);
     const token = getToken();
     axios
-      .post("https://shopping-whv7.onrender.com/api/v1/user/publish-product",formData, {
+      .post("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/user/publish-product",formData, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

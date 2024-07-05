@@ -71,7 +71,7 @@ function Cart() {
                 <TableBody>
                  {cart.map(({item,selectedColors,selectedSizes,quantity},index)=> <TableRow key={index}>
                     <TableCell className="font-medium flex gap-x-2 flex-col md:flex-row ">
-                        <Image src={"https://shopping-whv7.onrender.com/images/"+item.imageUrl} width={100} height={100} className='w-16 h-16 object-contain' alt='pid' />
+                        <Image src={"http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/images/"+item.imageUrl} width={100} height={100} className='w-16 h-16 object-contain' alt='pid' />
                         <div className='flex flex-col gap-y-1'>
                             <h1 className='text-gray-700  text-sm max-sm:hidden'>{item.title}</h1>
                             <h2 className='text-gray-400 text-xs'>itemId: {item.id}</h2>

@@ -36,7 +36,7 @@ function Product({ params }) {
     const token = getToken();
     if (token) {
       axios
-        .get("https://shopping-whv7.onrender.com/api/v1/search/item-product?queryStr="+params.id, {
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/item-product?queryStr="+params.id, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -61,7 +61,7 @@ function Product({ params }) {
           width={500}
           height={500}
           alt={product?.imageUrl}
-          src={"https://shopping-whv7.onrender.com/images/"+product?.imageUrl}
+          src={"http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/images/"+product?.imageUrl}
           className="w-72 h-72 object-cover"
         />
       </div>

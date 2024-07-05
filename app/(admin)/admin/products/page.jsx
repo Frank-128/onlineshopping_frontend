@@ -26,7 +26,7 @@ function Products() {
     const token = getToken();
     if (token) {
       axios
-        .get("https://shopping-whv7.onrender.com/api/v1/search/items", {
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/items", {
           headers: {
             Authorization: `Bearer ${token}`,
           },
@@ -113,13 +113,13 @@ function Products() {
                         <Image
                           src={
                             i.imageUrl
-                              ? "https://shopping-whv7.onrender.com/images/" + i?.imageUrl
+                              ? "http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/images/" + i?.imageUrl
                               : "/shopping_cart.png"
                           }
                           width={500}
                           height={500}
                           alt={i.imageUrl}
-                          className="object-cover h-10 w-10"
+                          className="object-contain h-10 w-10"
                         />
                       </div>
                     </td>

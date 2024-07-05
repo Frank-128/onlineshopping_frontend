@@ -1,12 +1,34 @@
+"use client"
 import BackButton from "@/components/customer/BackButton";
 import ProductCard from "@/components/customer/ProductCard";
-import { products } from "@/constants/products";
-import React from "react";
+import { StoredCookie } from "@/constants/functions";
+import axios from "axios";
+// import { products } from "@/constants/products";
+import React, { useEffect, useState } from "react";
 
 function Category({ params }) {
-    
-  const category_products = products.filter((item) =>
-    item.category.includes(params.category)
+  const { getToken } = StoredCookie();
+  const [products, setProducts] = useState(null);
+
+  useEffect(() => {
+    const token = getToken();
+    if (token) {
+      axios
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/items", {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        })
+        .then((res) => {
+          setProducts(res.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  }, []);
+  const category_products = products?.filter((item) =>
+    item?.category?.includes(params.category)
   );
   console.log(params,"is the value")
   return <div className="h-full relative">
@@ -16,7 +38,7 @@ function Category({ params }) {
    <div/>
    </div>
     <div className='grid absolute mt-16 w-full my-4 place-items-center md:grid-cols-3 sm:grid-cols-3 grid-cols-1 space-y-3  py-10'>
-        {category_products.length === 0 ?<EmptyCategoryProducts/> :category_products.map((item,index) =><ProductCard key={index} item={item} />)}
+        {!products?"loading...": category_products?.length === 0 ?<EmptyCategoryProducts/> :category_products?.map((item,index) =><ProductCard key={index} item={item} />)}
     </div>
   </div>;
 }

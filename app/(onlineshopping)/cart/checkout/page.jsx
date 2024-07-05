@@ -20,10 +20,13 @@ import { useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
 import { StoredCookie } from "@/constants/functions";
 import axios from "axios";
+import { useAuth } from "@/context/auth";
 
 function Checkout() {
   const cart = useCart((state) => state.items);
+  const emptyCart = useCart((state) => state.emptyCart);
   const [chosenValue,setChosenValue] = useState("");
+  const auth = useAuth(state=>state.user)
   const {register,handleSubmit,formState:{errors}} = useForm()
   const {getToken} = StoredCookie()
   const router = useRouter();
@@ -66,6 +69,8 @@ function Checkout() {
   const amount = calculateTotalAmount().toFixed(2);
 
 
+  
+
   const submitData = (data)=>{
     
 
@@ -73,23 +78,26 @@ function Checkout() {
     const cartItems = [];
     cart.forEach(element => {
       console.log(element)
-      cartItems.push({itemNo:element.item.itemNo,productQuantity:element.item.quantity,sizes:element.selectedSizes,colors:element.selectedColors})
+      cartItems.push({itemNo:element.item.itemNo,productQuantity:element.quantity,sizes:element.selectedSizes,colors:element.selectedColors})
     });
     
     const token = getToken();
     if (token) {
       axios
-        .post("https://shopping-whv7.onrender.com/api/v1/user/cart/checkout",{...data,cartItems}, {
+        .post("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/user/cart/checkout",{...data,email:auth?.sub,cartItems}, {
           headers: {
             Authorization: `Bearer ${token}`,
           },
         })
         .then((res) => {
           console.log(res.data)
-         handlePayment()
+          router.push('/cart/checkout/success')
         })
         .catch((err) => {
           console.log(err);
+          router.push('/cart/checkout/error')
+        }).finally(()=>{
+          emptyCart()
         });
     }
   }
@@ -105,8 +113,8 @@ function Checkout() {
           <div className="flex gap-x-5 flex-col md:flex-row justify-between w-full">
             <div>
               <Label htmlFor="email">Email</Label>
-              <Input name="email" {...register('email',{required:'email field is required'})} />
-              {errors.email && <span className='text-red-600'>{errors.email.message}</span>}
+              <Input name="email"  disabled defaultValue={auth?.sub} />
+              
             </div>
            
           </div>

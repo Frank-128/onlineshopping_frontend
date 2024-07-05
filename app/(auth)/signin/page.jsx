@@ -22,7 +22,7 @@ function SignIn() {
 
   const submitData = ({email,password})=>{
     setLoading(true)
-    axios.post('https://shopping-whv7.onrender.com/api/v1/base/authenticate',{email:email,password:password}).then((res)=>{
+    axios.post('http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/base/authenticate',{email:email,password:password}).then((res)=>{
       saveToken(res.data.token)
       const user = jwtDecode(res.data.token)
       console.log(user)
