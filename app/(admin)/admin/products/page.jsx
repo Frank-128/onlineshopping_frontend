@@ -33,7 +33,7 @@ function Products() {
 
   }, []);
 
-  console.log(products)
+
 
   return (
     <div>

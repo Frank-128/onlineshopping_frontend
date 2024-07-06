@@ -33,7 +33,7 @@ function Checkout() {
 
 
   const handlePayment = ()=>{
-    console.log(chosenValue)
+
 
     if(chosenValue == ""){
       return 
@@ -77,7 +77,7 @@ function Checkout() {
     
     const cartItems = [];
     cart.forEach(element => {
-      console.log(element)
+
       cartItems.push({itemNo:element.item.itemNo,productQuantity:element.quantity,sizes:element.selectedSizes,colors:element.selectedColors})
     });
     
@@ -90,7 +90,7 @@ function Checkout() {
           },
         })
         .then((res) => {
-          console.log(res.data)
+
           router.push('/cart/checkout/success')
         })
         .catch((err) => {

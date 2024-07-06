@@ -35,7 +35,7 @@ function Product({ params }) {
       axios
         .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/item-product?queryStr="+params.id)
         .then((res) => {
-          console.log(res.data)
+
           setProduct(res.data);
         })
         .catch((err) => {

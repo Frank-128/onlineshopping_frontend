@@ -12,10 +12,10 @@ function MainCustomer({children}) {
     useEffect(()=>{
        const res =  getToken()
 
-       console.log(res)
+
     },[])
 
-    console.log(auth)
+
   return (
     <section className="md:mt-20 mt-24">
         {children}

@@ -36,7 +36,7 @@ function SignUp() {
         role: "CUSTOMER",
       })
       .then((res) => {
-        console.log(res);
+
         toast({
           title: "Registered",
           className: "bg-green-500 text-white absolute",

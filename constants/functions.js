@@ -26,7 +26,7 @@ export const StoredCookie = () => {
       try {
        
         const user = jwtDecode(encryptedToken);
-        console.log(user)
+
         setUser(user);
       } catch (error) {
         console.error("Invalid token", error);

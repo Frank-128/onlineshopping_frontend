@@ -25,7 +25,7 @@ function SignIn() {
     axios.post('http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/base/authenticate',{email:email,password:password}).then((res)=>{
       saveToken(res.data.token)
       const user = jwtDecode(res.data.token)
-      console.log(user)
+
       if(user.role[0].authority === 'ADMIN'){
 
         return router.push('/admin')

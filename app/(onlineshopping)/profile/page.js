@@ -21,7 +21,7 @@ function Settings() {
   const handleFileChange = (event) => {
     const file = event.target.files[0];
     if (file) {
-      console.log('Selected file:', file);
+
   
     }
   };
@@ -40,7 +40,7 @@ function Settings() {
           },
         })
         .then((res) => {
-          console.log(res,"is the data")
+
           setProfile(res.data);
         })
         .catch((err) => {

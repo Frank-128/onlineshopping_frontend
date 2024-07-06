@@ -25,7 +25,7 @@ function Category({ params }) {
   const category_products = products?.filter((item) =>
     item?.category?.includes(params.category)
   );
-  console.log(params,"is the value")
+
   return <div className="h-full relative">
    <div className="flex items-center bg-white z-50 px-20 h-16 fixed w-screen border-b-[0.2px] border-gray-300 py-2 justify-between">
    <BackButton/>

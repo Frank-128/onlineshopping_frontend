@@ -18,9 +18,9 @@ function AddToCartCard({ selectedColors, selectedSizes, item }) {
   const addToCart = useCart((state) => state.addToCart);
 
   const handleSubmit = (type) => {
-    console.log("type",type)
+
     if (selectedColors.length === 0 && selectedSizes.length !== 0) {
-      console.log("reached here color select")
+
       return toast({
         title: "Oops",
         variant: "destructive",

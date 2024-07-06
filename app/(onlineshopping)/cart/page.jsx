@@ -46,7 +46,7 @@ function Cart() {
 
     const quantity = totalQuantity()
     const amount = calculateTotalAmount().toFixed(2)
-    console.log(quantity+"__"+amount)
+
    
   return (
     <div>

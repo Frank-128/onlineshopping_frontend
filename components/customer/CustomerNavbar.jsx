@@ -21,7 +21,7 @@ function CustomerNavbar() {
   const auth = useAuth(state=>state.user)
   const cartLength = useCart(state=>state.items).length
   
-  console.log(auth)
+
 
   return (
     <nav className="h-24 md:h-20 w-screen  bg-[#062451] z-50 fixed inset-0 md:flex-row flex flex-col   text-white justify-around md:px-5 items-center">
