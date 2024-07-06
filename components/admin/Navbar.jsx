@@ -40,8 +40,8 @@ function Navbar() {
           <AvatarFallback>CN</AvatarFallback>
         </Avatar>
         <div className="md:flex flex-col hidden">
-          <span className="text-sm text-gray-600">Rico Hernandes</span>
-          <span className="text-xs text-gray-800">Marketing director</span>
+          <span className="text-sm text-gray-600">Admin</span>
+          <span className="text-xs text-gray-800">Managing director</span>
         </div>
       </div>
     </nav>

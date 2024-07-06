@@ -11,7 +11,7 @@ import {
 } from "../ui/tooltip";
 import { Button } from "../ui/button";
 import { Tabs, TabsList, TabsTrigger } from "../ui/tabs";
-import { useEffect } from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 import { StoredCookie } from "@/constants/functions";
 
@@ -34,7 +34,6 @@ const TABLE_HEAD = [
   "Name",
   "Email",
   "Phonenumber",
-  "Location",
   "created_at",
   "",
 ];
@@ -86,20 +85,25 @@ const TABLE_ROWS = [
 
 export default function UsersTable() {
 
-  const {getToken} = StoredCookie()
+  const [users,setUsers] = useState(null)
+
 
   
 
   useEffect(()=>{
-    const token = getToken();
+
     axios
-        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/admin/all-users",{
-          headers:{
-            Authorization:`Bearer ${token}`
-          }
-        }
-         ).then((res)=>{
-          console.log(res.data)
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/admin/all-users").then((res)=>{
+          const result =   res.data.content.map(([name, email, phoneNumber, id, timestamp, role]) => ({
+        name,
+        email,
+        phoneNumber,
+        id,
+        timestamp,
+        role
+      }))
+          .filter(user => user.role !== "ADMIN")
+      setUsers(result)
          }).catch((err)=>{
           console.log(err)
          })
@@ -113,15 +117,16 @@ export default function UsersTable() {
             <span variant="h5" color="blue-gray" className="hidden md:block">
               User list
             </span>
-            <Tabs defaultValue="account" className="w-[400px]">
-      <TabsList className="grid w-full grid-cols-2">
-        <TabsTrigger value="customer">Customers</TabsTrigger>
-        <TabsTrigger value="entrepreneur">Entrepreneurs</TabsTrigger>
-      </TabsList>
+      {/*      <Tabs defaultValue="account" className="w-[400px]">*/}
+      {/*<TabsList className="grid w-full grid-cols-2">*/}
+      {/*  <TabsTrigger value="customer">Customers</TabsTrigger>*/}
+      {/*  <TabsTrigger value="entrepreneur">Entrepreneurs</TabsTrigger>*/}
+      {/*</TabsList>*/}
 
-      </Tabs>
+      {/*</Tabs>*/}
           </div>
-          <div className="flex shrink-0 flex-col gap-2 sm:flex-row">
+          {/* add user button */}
+          <div className="flex shrink-0 hidden flex-col gap-2 sm:flex-row">
             <Button className="flex items-center gap-3" size="sm">
               <AiOutlineUserAdd strokeWidth={2} className="h-4 w-4" /> Add user
             </Button>
@@ -129,103 +134,98 @@ export default function UsersTable() {
         </div>
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row"></div>
       </CardHeader>
-      <CardContent className="overflow-scroll px-0">
+      {users? <CardContent className="overflow-scroll px-0">
         <table className="mt-4 w-full min-w-max table-auto text-left">
           <thead>
-            <tr>
-              {TABLE_HEAD.map((head) => (
+          <tr>
+            {TABLE_HEAD.map((head) => (
                 <th
-                  key={head}
-                  className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
+                    key={head}
+                    className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
                 >
                   <span
-                    variant="small"
-                    color="blue-gray"
-                    className="font-normal leading-none opacity-70"
+                      variant="small"
+                      color="blue-gray"
+                      className="font-normal leading-none opacity-70"
                   >
                     {head}
                   </span>
                 </th>
-              ))}
-            </tr>
+            ))}
+          </tr>
           </thead>
           <tbody>
-            {TABLE_ROWS.map(
-              ({ name, email, location, phoneNumber, created_at }, index) => {
+          {users.map(
+              ({name, email, timestamp, phoneNumber}, index) => {
                 const isLast = index === TABLE_ROWS.length - 1;
                 const classes = isLast
-                  ? "p-4"
-                  : "p-4 border-b border-blue-gray-50";
+                    ? "p-4"
+                    : "p-4 border-b border-blue-gray-50";
 
                 return (
-                  <tr key={index}>
-                    <td className={classes}>
+                    <tr key={index}>
+                      <td className={classes}>
                       <span
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal"
                       >
                         {name}
                       </span>
-                    </td>
-                    <td className={classes}>
+                      </td>
+                      <td className={classes}>
                       <span
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal opacity-70"
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal opacity-70"
                       >
                         {email}
                       </span>
-                    </td>
-                    <td className={classes}>
+                      </td>
+                      <td className={classes}>
                       <span
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal opacity-70"
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal opacity-70"
                       >
                         {phoneNumber}
                       </span>
-                    </td>
-                    <td className={classes}>
+                      </td>
+                      <td className={classes}>
                       <span
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal opacity-70"
+                          variant="small"
+                          color="blue-gray"
+                          className="font-normal opacity-70"
                       >
-                        {location}
+                        {timestamp}
                       </span>
-                    </td>
-                    <td className={classes}>
-                      <span
-                        variant="small"
-                        color="blue-gray"
-                        className="font-normal"
-                      >
-                        {created_at}
-                      </span>
-                    </td>
-                    <td className={classes}>
-                      <TooltipProvider>
-                        <Tooltip>
-                          <TooltipTrigger asChild>
-                            <Button variant="outline">
-                              {" "}
-                              <FaEdit className="h-4 w-4" />
-                            </Button>
-                          </TooltipTrigger>
-                          <TooltipContent>
-                            <p>Edit user</p>
-                          </TooltipContent>
-                        </Tooltip>
-                      </TooltipProvider>
-                    </td>
-                  </tr>
+                      </td>
+                      <td className={classes}>
+                        <TooltipProvider>
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <Button variant="outline">
+                                {" "}
+                                <FaEdit className="h-4 w-4"/>
+                              </Button>
+                            </TooltipTrigger>
+                            <TooltipContent>
+                              <p>Edit user</p>
+                            </TooltipContent>
+                          </Tooltip>
+                        </TooltipProvider>
+                      </td>
+                    </tr>
                 );
               }
-            )}
+          )}
           </tbody>
         </table>
-      </CardContent>
+      </CardContent>:
+          <CardContent>
+            <div>Loading...</div>
+          </CardContent>
+      }
       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
         <span variant="small" color="blue-gray" className="font-normal">
           Page 1 of 10

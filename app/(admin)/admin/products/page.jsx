@@ -10,8 +10,6 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
-// import { products } from "@/constants";
-import { StoredCookie } from "@/constants/functions";
 import axios from "axios";
 import Image from "next/image";
 import Link from "next/link";
@@ -19,25 +17,20 @@ import React, { useEffect, useState } from "react";
 import { FaPlus } from "react-icons/fa";
 
 function Products() {
-  const { getToken } = StoredCookie();
+
   const [products, setProducts] = useState(null);
 
   useEffect(() => {
-    const token = getToken();
-    if (token) {
+
       axios
-        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/items", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
+        .get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/api/v1/search/items")
         .then((res) => {
           setProducts(res.data);
         })
         .catch((err) => {
           console.log(err);
         });
-    }
+
   }, []);
 
   console.log(products)

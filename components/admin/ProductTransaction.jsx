@@ -2,216 +2,120 @@
 
 import Badge from "../Badge";
 import { Card, CardContent, CardHeader } from "../ui/card";
+import {useEffect, useState} from "react";
+import axios from "axios";
 
-   
+
+
   const TABLE_HEAD = ["Product ID", "Name", "Email", "Amount", "Date","Status"];
-   
-  const TABLE_ROWS = [
-    {
-      product_id: "1234",
-      name: "Spotify",
-      email: "keffline@gmail.com",
-      amount: "$2,500",
-      date: "Wed 3:00pm",
-      status: "paid",
-    },
-    {
-      product_id: "1234",
-      name: "Amazon",
-      email: "keffline@gmail.com",
-      amount: "$5,000",
-      date: "Wed 1:00pm",
-      status: "paid",
-    },
-    {
-      product_id: "1234",
-      name: "Pinterest",
-      email: "keffline@gmail.com",
-      amount: "$3,400",
-      date: "Mon 7:40pm",
-      status: "pending",
-    },
-    {
-      product_id: "1234",
-      name: "Google",
-      email: "keffline@gmail.com",
-      amount: "$1,000",
-      date: "Wed 5:00pm",
-      status: "paid",
-    },
-    {
-      product_id: "1234",
-      name: "netflix",
-      email: "keffline@gmail.com",
-      amount: "$14,000",
-      date: "Wed 3:30am",
-      status: "cancelled",
-    },
-    {
-        product_id: "1234",
-        name: "netflix",
-        email: "keffline@gmail.com",
-        amount: "$14,000",
-        date: "Wed 3:30am",
-        status: "cancelled",
-      },
-      {
-        product_id: "1234",
-        name: "netflix",
-        email: "keffline@gmail.com",
-        amount: "$14,000",
-        date: "Wed 3:30am",
-        status: "cancelled",
-      },
-      {
-        product_id: "1234",
-        name: "netflix",
-        email: "keffline@gmail.com",
-        amount: "$14,000",
-        date: "Wed 3:30am",
-        status: "cancelled",
-      },
-      {
-        product_id: "1234",
-        name: "netflix",
-        email: "keffline@gmail.com",
-        amount: "$14,000",
-        date: "Wed 3:30am",
-        status: "cancelled",
-      },
-      {
-        product_id: "1234",
-        name: "netflix",
-        email: "keffline@gmail.com",
-        amount: "$14,000",
-        date: "Wed 3:30am",
-        status: "cancelled",
-      },
-      {
-        product_id: "1234",
-        name: "netflix",
-        email: "keffline@gmail.com",
-        amount: "$14,000",
-        date: "Wed 3:30am",
-        status: "cancelled",
-      },
-  ]; 
+
+
 
 export default function ProductTransaction() {
+  const [orders,setOrders] = useState(null);
+
+  useEffect(() => {
+    axios.get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/admin/all-orders").then((res)=>{
+      const result =   res.data.content.map(([orderID,name, email, price, status, timestamp]) => ({
+        orderID,
+        name,
+        email,
+        price,
+        status,
+        timestamp,
+
+      }))
+      setOrders(result)
+    }).catch(err=>console.log(err))
+  }, []);
     return (
       <Card className="z-0 lg:w-2/3 w-11/12  rounded">
-       
+
         <CardContent className="overflow-scroll  h-[350px]  hideScroll px-0 ">
          <div className="text-gray-600 p-2">
           Latest orders
          </div>
-          <table className="w-full min-w-max table-auto text-left">
-            <thead>
-              <tr>
-                {TABLE_HEAD.map((head) => (
-                  <th
-                    key={head}
-                    className="border-y border-blue-gray-100 bg-blue-gray-50/50 p-4"
-                  >
-                    <span
-                     
-                      className="font-normal leading-none opacity-70 text-xs"
-                    >
-                      {head}
-                    </span>
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {TABLE_ROWS.map(
-                (
-                  {
-                   
-                    name,
-                    amount,
-                    date,
-                    status,
-                    email,
-                    product_id,
-                  },
-                  index,
-                ) => {
-                  const isLast = index === TABLE_ROWS.length - 1;
-                  const classes = isLast
-                    ? "p-4"
-                    : "p-4 border-b border-blue-gray-50";
-   
-                  return (
-                    <tr key={index}>
-                      <td className={classes}>
-                       
-                          <span
-                            className="font-bold text-gray-500 text-xs"
-                          >
-                            {product_id}
-                          </span>
-                       
-                      </td>
-                      <td className={classes}>
-                       
-                       <span
-                         className="font-bold text-xs text-gray-500"
-                       >
-                         {name}
-                       </span>
-                    
-                   </td>
-                   <td className={classes}>
-                       
-                       <span
-                         className="font-bold text-xs text-gray-500"
-                       >
-                         {email}
-                       </span>
-                    
-                   </td>
-                      <td className={classes}>
-                        <span
-                          
-                          className="font-normal text-xs text-gray-500"
-                        >
-                          {amount}
-                        </span>
-                      </td>
-                     
-                      <td className={classes}>
-                        <div className="w-max">
+          { !orders ?
+              <div>
+                <p>Loading...</p>
+              </div> :
+              <div
+                  class="relative flex flex-col w-full h-[450px] overflow-scroll text-gray-700 bg-white shadow-md bg-clip-border rounded-none">
+                <table class="w-full text-left table-auto min-w-max">
+                  <thead>
+                  <tr>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                      <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        Order ID
+                      </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                      <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        Customer Name
+                      </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                      <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        Status
+                      </p>
+                    </th>
+                    <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                      <p class="block font-sans text-sm antialiased font-normal leading-none text-blue-gray-900 opacity-70">
+                        Created At
+                      </p>
+                    </th>
+
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {orders.map((i, index) => <tr key={index} class="even:bg-blue-gray-50/50">
+                        <td class="p-4">
+                          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                            {i.orderID}
+                          </p>
+                        </td>
+                        <td class="p-4">
+                          <div className='flex flex-col gap-1 items-start'>
+                            <p class="font-sans text-sm antialiased font-normal  leading-normal text-blue-gray-900">
+                              {i.name}
+                            </p>
+                            <p className='text-xs'>{i.email}</p>
+                          </div>
+                        </td>
+                        <td class="p-4">
+
                           <Badge
-                            
-                            variant={
-                              status === "paid"
-                                ? "success"
-                                : status === "pending"
-                                ? "warning"
-                                : "error"
-                            }
+
+                              variant={
+                                i.status === "Delivered"
+                                    ? "success"
+                                    : i.status === "Shipped"
+                                        ? "primary"
+                                        : i.status === "ongoing"
+                                            ? "warning"
+                                            : "red"
+                              }
                           >
-                            {status}
-                            </Badge>
-                        </div>
-                      </td>
-                      <td className={classes}>
-                        <span
-                          className="font-normal text-xs text-gray-500"
-                        >
-                          {date}
-                        </span>
-                      </td>
-                     
-                    </tr>
-                  );
-                },
-              )}
-            </tbody>
-          </table>
+                            {i.status}
+                          </Badge>
+                        </td>
+                        <td class="p-4">
+                          <p class="block font-sans text-sm antialiased font-normal leading-normal text-blue-gray-900">
+                            {i.timestamp}
+                          </p>
+                        </td>
+
+                      </tr>
+                  )}
+
+                  </tbody>
+                </table>
+              </div>}
         </CardContent>
-        
+
       </Card>
     );
   }
+
+
+

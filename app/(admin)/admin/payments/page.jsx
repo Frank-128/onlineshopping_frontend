@@ -4,7 +4,8 @@ import React from 'react'
 function Payments() {
   return (
     <div>
-      <TransactionsTable/>
+        <p>No payments yet!!</p>
+      {/*<TransactionsTable/>*/}
     </div>
   )
 }
