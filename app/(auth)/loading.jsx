@@ -1,11 +1,12 @@
 import React from 'react'
+import LoadingPage from "@/components/Loading";
 
-function loading() {
+function Loading() {
   return (
     <div>
-        Loading...
+        <LoadingPage/>
     </div>
   )
 }
 
-export default loading
+export default Loading

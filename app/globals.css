@@ -1,10 +1,10 @@
 @font-face {
   font-family: "libre";
-  src: url("/Libre_Franklin/static/LibreFranklin-Black.ttf") format("ttf");
-  font-weight: normal;
-  font-style: normal;
-}
+  src: url("/Libre_Franklin/static/LibreFranklin-Black.ttf") format("truetype");
+  /*font-weight: normal;*/
+  /*font-style: normal;*/
 
+}
 @tailwind base;
 @tailwind components;
 @tailwind utilities;

@@ -5,8 +5,12 @@ import {
   } from "@/components/ui/popover"
 import Link from "next/link"
   import React from 'react'
+import {useCookies} from "react-cookie";
+import {useAuth} from "@/context/auth";
   
   function ProfilePopover({child}) {
+      const [ removeCookie] = useCookies(["token"]);
+      const { setToken, setUser } = useAuth();
     return (
         <Popover>
         <PopoverTrigger>{child}</PopoverTrigger>
@@ -27,10 +31,15 @@ import Link from "next/link"
                     <h1>profile</h1>
                     </Link>
                 </li>
-                <li className="hover:shadow-xl hover:border-gray-300 text-center  p-2">
-                    <Link href='/signin'  >
+                <li onClick={ () => {
+
+                    removeCookie("token", { path: "/" });
+                    setUser(null);
+                    router.push('/signin')
+                }} className="hover:shadow-xl hover:border-gray-300 text-center  p-2">
+
                     <h1>logout</h1>
-                    </Link>
+
                 </li>
             </ul>
         </PopoverContent>

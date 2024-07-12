@@ -4,6 +4,7 @@ import { StoredCookie } from '@/constants/functions';
 import axios from 'axios';
 
 import React, { useEffect, useState } from 'react'
+import LoadingPage from "@/components/Loading";
 
 function Products() {
 
@@ -21,11 +22,11 @@ function Products() {
         });
 
   }, []);
-    
+
   return (
     <div className='grid place-items-center md:grid-cols-3 sm:grid-cols-3 grid-cols-1 space-y-3  py-10'>
         {
-        !products?"loading...":
+        !products?<LoadingPage/>:
         products.length === 0 ? "Products not available yet":products?.map((item,index) =><ProductCard key={index} item={item} />)}
     </div>
   )

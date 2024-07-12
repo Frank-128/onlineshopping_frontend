@@ -3,11 +3,14 @@ import DashboardSlider from "@/components/customer/DashboardSlider";
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import Image from "next/image";
+import {useRouter} from "next/navigation";
 
 export default function Home() {
-  const ShoppingButton = ({ text, bg }) => {
+    const router = useRouter()
+
+  const ShoppingButton = ({ text, bg,...other }) => {
     return (
-      <Button className={`${bg} rounded-2xl drop-shadow-xl  text-bold`}>
+      <Button {...other} className={`${bg} rounded-2xl drop-shadow-xl  text-bold`}>
         <p className="text-white">{text}</p>
         <ArrowRight color="white" />
       </Button>
@@ -16,25 +19,18 @@ export default function Home() {
 
   return (
     <main className="min-h-[calc(100vh-80px)] w-full flex lg:flex-row items-center flex-col xl:justify-between bg-blue-800/20 px-2 lg:px-10 py-5">
-      <div>
-        <p className="text-gray-100 text-md  md:text-2xl">
-          All products in one place
-        </p>
-        <p className="text-gray-600 text-lg md:text-3xl">
-          Get your favorite products at fair prices and faster
-        </p>
 
         <div className="max-lg:hidden flex items-center justify-center w-full bg-[#062451] my-2 py-2 rounded-sm shadow-2xl">
           <div className=" flex items-center flex-col">
             <p className="mt-14 text-white">Featured Products</p>
             <DashboardSlider />
             <div className="space-x-2">
-              <ShoppingButton text={"Start shopping"} bg={"bg-[#d0f0c0]/50"} />
-              <ShoppingButton text={"View categories"} bg={"bg-[#d0f0c0]/70"} />
+              <ShoppingButton onClick={()=>router.push('/products')}  text={"Start shopping"} bg={"bg-[#d0f0c0]/50"} />
+              <ShoppingButton onClick={()=>router.push('/categories')} text={"View categories"} bg={"bg-[#d0f0c0]/70"} />
             </div>
           </div>
         </div>
-      </div>
+
 
       <Image
         src={"/dashboard_pic.png"}

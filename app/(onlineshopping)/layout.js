@@ -3,6 +3,8 @@ import "../globals.css";
 import CustomerNavbar from "@/components/customer/CustomerNavbar";
 import { Toaster } from "@/components/ui/toaster";
 import MainCustomer from "@/components/customer/MainCustomer";
+import LoadingPage from "@/components/Loading";
+
 
 
 const inter = Inter({ subsets: ["latin"] });
@@ -20,7 +22,7 @@ export default function RootLayout({ children }) {
         <MainCustomer>
         {children}
           </MainCustomer>
-       
+
         </body>
     </html>
   );

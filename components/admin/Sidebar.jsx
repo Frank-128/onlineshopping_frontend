@@ -4,10 +4,27 @@ import { usePathname } from 'next/navigation'
 import { FaRegCircleQuestion } from "react-icons/fa6";
 import React from 'react'
 import Link from 'next/link';
+import {useRouter} from "next/navigation";
 
 function Sidebar() {
 
     const pathname = usePathname()
+  const [ removeCookie] = useCookies(["token"]);
+  const { setToken, setUser } = useAuth();
+  const router = useRouter()
+
+  const saveToken = (token) => {
+    setCookie("token", token, {
+      path: "/",
+      secure: false,
+      sameSite: "Strict",
+    });
+  };
+
+  const removeToken = () => {
+    removeCookie("token", { path: "/" });
+    setUser(null);
+  };
 
   return (
     <aside className="h-[calc(100vh-80px)] py-2 md:flex hidden flex-col border-r-[0.5px] border-gray-400  items-center justify-between fixed w-[240px] ">
@@ -21,6 +38,10 @@ function Sidebar() {
           </Link>
           </li>)
       }
+      <li onClick={()=>{
+        removeToken();
+        router.push('/signin')
+      }}> Logout </li>
     </ul>
 
     <div className="flex items-center mb-10 text-gray-400 gap-2">
