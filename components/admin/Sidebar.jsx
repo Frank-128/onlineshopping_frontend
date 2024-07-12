@@ -5,21 +5,18 @@ import { FaRegCircleQuestion } from "react-icons/fa6";
 import React from 'react'
 import Link from 'next/link';
 import {useRouter} from "next/navigation";
+import {useCookies} from "react-cookie";
+import {useAuth} from "@/context/auth";
+import {FaSignOutAlt} from "react-icons/fa";
 
 function Sidebar() {
 
     const pathname = usePathname()
-  const [ removeCookie] = useCookies(["token"]);
+  const [ cookies,setCookie,removeCookie] = useCookies(["token"]);
   const { setToken, setUser } = useAuth();
   const router = useRouter()
 
-  const saveToken = (token) => {
-    setCookie("token", token, {
-      path: "/",
-      secure: false,
-      sameSite: "Strict",
-    });
-  };
+
 
   const removeToken = () => {
     removeCookie("token", { path: "/" });
@@ -32,7 +29,7 @@ function Sidebar() {
       {
         admin_nav_links.map((item,index)=><li key={index} className={pathname == item.link ? 'bg-[#9e8282] text-white rounded px-2 py-1':'px-2 py-1'}>
           <Link href={item.link} className="flex items-center gap-2">
-         
+
         {React.createElement(item.icon)}
           <span>{item.name}</span>
           </Link>
@@ -41,7 +38,15 @@ function Sidebar() {
       <li onClick={()=>{
         removeToken();
         router.push('/signin')
-      }}> Logout </li>
+      }}
+      className=" px-2 py-1">
+      <div className={'flex items-center gap-2'}>
+        <FaSignOutAlt />
+        <span>Logout</span>
+      </div>
+
+
+    </li>
     </ul>
 
     <div className="flex items-center mb-10 text-gray-400 gap-2">

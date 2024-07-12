@@ -7,10 +7,13 @@ import Link from "next/link"
   import React from 'react'
 import {useCookies} from "react-cookie";
 import {useAuth} from "@/context/auth";
-  
+import {useRouter} from "next/navigation";
+
   function ProfilePopover({child}) {
-      const [ removeCookie] = useCookies(["token"]);
+      const [ cookies,setCookie,removeCookie] = useCookies(["token"]);
       const { setToken, setUser } = useAuth();
+      const router = useRouter()
+
     return (
         <Popover>
         <PopoverTrigger>{child}</PopoverTrigger>
@@ -44,8 +47,8 @@ import {useAuth} from "@/context/auth";
             </ul>
         </PopoverContent>
       </Popover>
-      
+
     )
   }
-  
+
   export default ProfilePopover
