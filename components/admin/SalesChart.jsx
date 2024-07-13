@@ -1,7 +1,7 @@
 "use client"
 import dynamic from "next/dynamic";
 const Chart = dynamic(() => import("react-apexcharts"), { ssr: false });
-import { Card, CardContent } from "../ui/card";
+import { Card, CardContent,CardHeader } from "../ui/card";
    
 
    
@@ -101,8 +101,10 @@ import { Card, CardContent } from "../ui/card";
    
   export default function SalesChart() {
     return (
-      <Card className="z-0 h-[360px] w-11/12 md:w-full">
-       
+      <Card className="z-0 h-[365px] w-11/12 md:w-full">
+
+           <div className='font-bold px-2'>Monthly visitors</div>
+
         <CardContent className="px-2 pb-0">
     <Chart {...chartConfig} />
         </CardContent>

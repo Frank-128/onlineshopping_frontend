@@ -54,6 +54,9 @@ function Orders() {
                 Created At
               </p>
             </th>
+            <th class="p-4 border-b border-blue-gray-100 bg-blue-gray-50">
+                Action
+             </th>
 
           </tr>
           </thead>
@@ -94,6 +97,12 @@ function Orders() {
                     {i.timestamp}
                   </p>
                 </td>
+                <td className='p-4'>
+                    <button className='bg-green-100 p-1 text-xs text-green-600'>
+                        Confirm
+                        </button>
+
+                  </td>
 
               </tr>
           )}

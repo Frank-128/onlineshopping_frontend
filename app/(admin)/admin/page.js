@@ -31,7 +31,7 @@ export default function Admin() {
         <DashboardCard title={"Total users"} value={totals.users || "loading..."} link="/admin/users" />
         <DashboardCard title={"Total orders"} value={totals.orders || "loading..."} link="/admin/orders" />
       </div>
-      <div className="flex-col items-center lg:flex-row flex gap-2">
+      <div className="flex-col items-center  flex gap-2">
       <ProductTransaction/>
       <SalesChart />
       </div>

@@ -29,9 +29,9 @@ export default function ProductTransaction() {
     }).catch(err=>console.log(err))
   }, []);
     return (
-      <Card className="z-0 lg:w-2/3 w-11/12  rounded">
+      <Card className="z-0  w-full rounded">
 
-        <CardContent className="overflow-scroll  h-[350px]  hideScroll px-0 ">
+        <CardContent className="overflow-scroll  max-h-[350px]  hideScroll px-0 ">
          <div className="text-gray-600 p-2">
           Latest orders
          </div>

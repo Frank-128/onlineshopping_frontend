@@ -39,8 +39,8 @@ function Sidebar() {
         removeToken();
         router.push('/signin')
       }}
-      className=" px-2 py-1">
-      <div className={'flex items-center gap-2'}>
+      className=" px-2 py-1 cursor-pointer">
+      <div className={'flex items-center gap-2 '}>
         <FaSignOutAlt />
         <span>Logout</span>
       </div>

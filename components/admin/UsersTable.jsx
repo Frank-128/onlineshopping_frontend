@@ -110,10 +110,10 @@ export default function UsersTable() {
       
   },[])
   return (
-    <Card className="rounded-none z-0 h-fit md:h-[calc(100vh-120px)] overflow-y-scroll hideScroll w-full">
+    <Card className="rounded-none z-0 h-fit md:max-h-[calc(100vh-120px)] md:h-fit overflow-y-scroll hideScroll w-full">
       <CardHeader floated={false} shadow={false} className="rounded-none">
-        <div className="mb-8 flex md:flex-row flex-col-reverse items-center justify-between gap-8">
-          <div className="flex md:gap-5 items-center">
+        <div className=" flex md:flex-row flex-col-reverse items-center justify-between gap-8">
+          <div className="flex  items-center">
             <span variant="h5" color="blue-gray" className="hidden md:block">
               User list
             </span>
@@ -135,7 +135,7 @@ export default function UsersTable() {
         <div className="flex flex-col items-center justify-between gap-4 md:flex-row"></div>
       </CardHeader>
       {users? <CardContent className="overflow-scroll px-0">
-        <table className="mt-4 w-full min-w-max table-auto text-left">
+        <table className="w-full min-w-max table-auto text-left">
           <thead>
           <tr>
             {TABLE_HEAD.map((head) => (
@@ -226,19 +226,19 @@ export default function UsersTable() {
             <div>Loading...</div>
           </CardContent>
       }
-      <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4">
-        <span variant="small" color="blue-gray" className="font-normal">
-          Page 1 of 10
-        </span>
-        <div className="flex gap-2">
-          <Button variant="outlined" size="sm">
-            Previous
-          </Button>
-          <Button variant="outlined" size="sm">
-            Next
-          </Button>
-        </div>
-      </CardFooter>
+{/*       <CardFooter className="flex items-center justify-between border-t border-blue-gray-50 p-4"> */}
+{/*         <span variant="small" color="blue-gray" className="font-normal"> */}
+{/*           Page 1 of 10 */}
+{/*         </span> */}
+{/*         <div className="flex gap-2"> */}
+{/*           <Button variant="outlined" size="sm"> */}
+{/*             Previous */}
+{/*           </Button> */}
+{/*           <Button variant="outlined" size="sm"> */}
+{/*             Next */}
+{/*           </Button> */}
+{/*         </div> */}
+{/*       </CardFooter> */}
     </Card>
   );
 }
