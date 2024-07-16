@@ -25,9 +25,9 @@ const LoadingPage = () => {
     }, []);
 
     return (
-        <div className={'absolute top-0 left-0 z-[9999] w-screen h-screen items-center justify-center bg-black/20 flex'}>
-            <div style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
-                <div className={'text-4xl font-bold text-gray-600'}>Loading</div>
+        <div className={'absolute top-0 left-0 z-[70] w-screen h-screen items-center justify-center bg-gray-800/95  flex'}>
+            <div className={'z-[90]'} style={{display: 'flex', flexDirection: 'row', justifyContent: 'center'}}>
+                <div className={'text-4xl font-bold text-gray-100'}>Loading</div>
                 <div ref={(el) => (divRef.current[0] = el)} style={styles.box}></div>
                 <div ref={(el) => (divRef.current[1] = el)} style={styles.box}></div>
                 <div ref={(el) => (divRef.current[2] = el)} style={styles.box}></div>
