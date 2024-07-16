@@ -42,7 +42,7 @@ export const customer_links = [
     icon:()=><TfiDashboard size={30}/>
 },
 {
-    name:"Products",
+    name:"Popular now",
     link : "/products",
     icon:()=><AiOutlineProduct size={30} />
 },
@@ -126,9 +126,9 @@ export const products = [
       "img": "/trousers.png"
     }
   ]
-  
 
-  export const orders = 
+
+  export const orders =
   [
     {
       "order_id": "789001",
@@ -201,7 +201,7 @@ export const products = [
       "created_at": "2023-05-10"
     }
   ]
-  
+
 
   export const payments = [
     {
@@ -285,7 +285,7 @@ export const products = [
       "status": "Pending"
     }
   ]
-  
+
 export const payment_types = [
   {
     name:"Airtel Money",

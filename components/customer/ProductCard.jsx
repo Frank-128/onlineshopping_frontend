@@ -11,7 +11,7 @@ function ProductCard({item}) {
     const removeCartItem = useCart(state=>state.removeUpdateCartItem)
     const calculateRatings = (ratings)=>{
       let totalRatings = Array(5).fill("text-gray-300");
-      
+
       for(let i = 0;i<ratings;i++){
         totalRatings[i] = "text-yellow-500"
       }
@@ -20,9 +20,9 @@ function ProductCard({item}) {
 
   return (
     <Card onClick={()=>{removeCartItem();router.push('/products/'+item.itemNo)}} className='relative w-64 h-64 cursor-pointer'>
-    
+
         <div>
-            <Image priority src={"http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/images/"+item?.imageUrl} width={500} height={500} alt={"product image"} className='w-full h-48 object-cover'  />
+            <Image priority src={"http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/images/"+item?.imageUrl} width={500} height={500} alt={"product image"} className='w-full h-48 object-cover hover:object-contain'  />
         </div>
         <span className='absolute top-2 rounded-lg left-2 p-2 w-18 text-center shadow-md text-xs font-bold text-white bg-blue-900'>{item.actualPrice}/=</span>
         <div className=''>
