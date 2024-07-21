@@ -81,9 +81,9 @@ function HomePage() {
 
     return (
         <div>
-            <div>
-                <h1 className={'font-extrabold px-20 py-2 text-2xl text-blue-950 '}>Men</h1>
-                <div className='grid place-items-center md:grid-cols-3 sm:grid-cols-3 grid-cols-1 space-y-3 '>
+            <div className={'mx-2 md:mx-10'}>
+                <h1 className={'font-bold px-2 md:px-6  py-2 text-lg md:text-2xl text-blue-950'}>Men</h1>
+                <div className='flex gap-2 overflow-x-scroll px-6  py-2 justify-around'>
                     {
                         !products ? <LoadingPage/> :
                             products.length === 0 ? "Products not available yet" : products?.filter((item) => item?.category?.includes("men")).map((item, index) =>
@@ -91,9 +91,9 @@ function HomePage() {
                 </div>
             </div>
 
-            <div>
-                <h1 className={'font-bold px-20 py-2 text-2xl text-blue-950'}>Women</h1>
-                <div className='grid place-items-center md:grid-cols-3 sm:grid-cols-3 grid-cols-1 space-y-3  '>
+            <div className={'mx-2 md:mx-10'}>
+            <h1 className={'font-bold px-2 md:px-6  py-2 text-lg md:text-2xl text-blue-950'}>Women</h1>
+                <div className='flex gap-2 overflow-x-scroll px-6  py-2 justify-around'>
 
 
                     {
@@ -103,9 +103,9 @@ function HomePage() {
 
                 </div>
             </div>
-            <div>
-                <h1 className={'font-bold px-20 py-2 text-2xl text-blue-950'}>Electronics</h1>
-                <div className='grid place-items-center md:grid-cols-3 sm:grid-cols-3 grid-cols-1 space-y-3  '>
+            <div className={'mx-2 md:mx-10'}>
+                <h1 className={'font-bold px-2 md:px-6  py-2 text-lg md:text-2xl text-blue-950'}>Electronics</h1>
+                <div className='flex gap-2 overflow-x-scroll px-6 md:px-16 py-2 justify-around'>
 
 
                     {
@@ -116,9 +116,9 @@ function HomePage() {
                 </div>
             </div>
 
-            <div>
-                <h1 className={'font-bold px-20 py-2 text-2xl text-blue-950'}>Gadgets</h1>
-                <div className='grid place-items-center md:grid-cols-3 sm:grid-cols-3 grid-cols-1 space-y-3  '>
+            <div className={'mx-2 md:mx-10'}>
+                <h1 className={'font-bold px-2 md:px-6  py-2 text-lg md:text-2xl text-blue-950'}>Gadgets</h1>
+                <div className='flex gap-2 overflow-x-scroll px-6 md:px-16 py-2 justify-around'>
 
 
                     {
@@ -129,7 +129,7 @@ function HomePage() {
                 </div>
             </div>
 
-            <div className={'h-4'} />
+            <div className={'h-4'}/>
 
         </div>
     )

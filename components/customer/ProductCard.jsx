@@ -19,7 +19,7 @@ function ProductCard({item}) {
     }
 
   return (
-    <Card onClick={()=>{removeCartItem();router.push('/products/'+item.itemNo)}} className='relative w-64 h-64 cursor-pointer'>
+    <Card onClick={()=>{removeCartItem();router.push('/products/'+item.itemNo)}} className='relative w-64 h-64 cursor-pointer shrink-0'>
 
         <div>
             <Image priority src={"http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/images/"+item?.imageUrl} width={500} height={500} alt={"product image"} className='w-full h-48 object-cover hover:object-contain'  />

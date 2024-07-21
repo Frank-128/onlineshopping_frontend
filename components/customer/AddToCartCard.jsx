@@ -54,9 +54,9 @@ function AddToCartCard({ selectedColors, selectedSizes, item }) {
         className: "bg-green-500 text-white",
         duration:3000,
       });
-    
+
     }
-      
+
       else
       {
         const updatedItem={ item, selectedColors, selectedSizes, quantity }
@@ -70,7 +70,7 @@ function AddToCartCard({ selectedColors, selectedSizes, item }) {
           duration:3000,
         });
       }
-     
+
     }
   };
   const animateIcon = () => {
@@ -103,7 +103,7 @@ function AddToCartCard({ selectedColors, selectedSizes, item }) {
   };
 
   return (
-    <Card className="place-items-center">
+    <Card className="place-items-center w-fit">
       <CardContent className="place-items-center">
         <p>Buy Now</p>
         <b className="text-4xl text-gray-800">{item?.actualPrice}</b>
@@ -139,9 +139,9 @@ function AddToCartCard({ selectedColors, selectedSizes, item }) {
         </div>
         {selectedCartItem === null ?<Button onClick={()=>handleSubmit(0)} className="w-[13rem] bg-blue-900">
           Add to cart
-        </Button>: 
+        </Button>:
         <Button onClick={()=>handleSubmit(1)} className="w-[13rem] bg-blue-900">
-        Update 
+        Update
       </Button>
         }
       </CardFooter>

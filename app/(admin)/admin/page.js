@@ -4,14 +4,16 @@ import ProductTransaction from "@/components/admin/ProductTransaction";
 import SalesChart from "@/components/admin/SalesChart";
 import axios from "axios";
 import { useEffect, useState } from "react";
+import {toast} from "@/components/ui/use-toast";
 
 export default function Admin() {
   const [totals,setTotals] = useState({products:null,users:null,orders:null})
 
   useEffect(()=>{
     axios.get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/admin/all-orders").then((res)=>{
-      setTotals(prev=>({...prev,orders:res.data.content.length}));
-    }).catch(err=>console.log(err))
+
+        setTotals(prev=>({...prev,orders:res.data.content.length}));
+    }).catch(err=>console.log('total orders',err))
 
     axios.get("http://onlineshopping.southafricanorth.cloudapp.azure.com/backend/admin/total-sales").then((res)=>{
 
@@ -24,12 +26,14 @@ export default function Admin() {
     }).catch(err=>console.log(err))
   },[])
 
+
+
   return (
     <main className="space-y-4">
       <div className="flex py-2 px-4 flex-1 gap-2 justify-between hideScroll overflow-x-scroll">
-        <DashboardCard title={"Total sales"} value={totals.sales || "loading..."} link="/admin/payments" />
-        <DashboardCard title={"Total users"} value={totals.users || "loading..."} link="/admin/users" />
-        <DashboardCard title={"Total orders"} value={totals.orders || "loading..."} link="/admin/orders" />
+        <DashboardCard title={"Total sales"} value={totals.sales !== null ? totals.sales : "loading..."} link="/admin/payments" />
+        <DashboardCard title={"Total users"} value={totals.users !== null ? totals.users : "loading..."} link="/admin/users" />
+        <DashboardCard title={"Total orders"} value={totals.orders !== null ? totals.orders : "loading..."} link="/admin/orders" />
       </div>
       <div className="flex-col items-center  flex gap-2">
       <ProductTransaction/>
